@@ -9,7 +9,7 @@ const addNoteHandler = (request, h) => {
     const updatedAt = createdAt;
 
     const newNote = {
-        title, tags, body, id, createdAt, updatedAt,
+         id, title, tags, body, createdAt, updatedAt,
     };
 
     notes.push(newNote);
@@ -22,6 +22,7 @@ const addNoteHandler = (request, h) => {
             message: 'Catatan berhasil ditambakan',
             data: {
                 noteId: id,
+                notes,
             },
         });
         response.code(201);
@@ -85,6 +86,7 @@ const editNoteByIdHandler = (request, h) => {
         const response = h.response({
             status: 'success',
             message: 'Catatan berhasil diperbaharui',
+            notes: notes[index],
         });
         response.code(200);
         return response;
@@ -124,4 +126,5 @@ module.exports = {
     getAllNotesHandler,
     getNoteByIdHandler,
     editNoteByIdHandler,
-    deleteNoteByIdHandler };
+    deleteNoteByIdHandler,
+};
